@@ -1,11 +1,16 @@
 import { Task } from "../entities/Task";
 import { ITask } from "../interfaces/ITask";
 import { AppDataSource } from "../../database/data-source";
+import { FindManyOptions } from "typeorm";
 
 const taskRepository = AppDataSource.getRepository(Task);
 
 const getTasks = (): Promise<ITask[]> => { 
-    return taskRepository.find();
+    const options: FindManyOptions<Task> = {
+        order: { created_at: 'ASC' },
+    };
+
+    return taskRepository.find(options);
 };
 
 const createTask = async (taskData: ITask): Promise<ITask> => {

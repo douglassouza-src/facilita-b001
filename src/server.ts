@@ -4,7 +4,7 @@ import cors from 'cors';
 import { AppDataSource } from './database/data-source';
 import routers from "./app/routes/routes";
 
-const PORT = 8000
+const PORT = 8080
 
 const app = express();
 
@@ -18,6 +18,6 @@ app.use(routers);
 AppDataSource.initialize()
     .then(async () => {
         console.log("Database - OK");
-        app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
+        app.listen(PORT, () => console.log(`Server is running on port: ${PORT}/tasks`));
     }
 );
