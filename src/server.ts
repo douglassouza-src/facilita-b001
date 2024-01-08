@@ -19,14 +19,7 @@ AppDataSource.initialize()
     .then(async () => {
         console.log("Database - OK");
         app.listen(PORT, () => console.log(`Server is running on port: ${PORT}`));
-    }
-);
-
-
-app.use((err: Error, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
-    console.error(err.stack);
-    res.status(500).send('Something went wrong!');
-  });
-  
-  
-  
+    })
+    .catch(error => {
+        console.error("Error initializing database:", error);
+    });

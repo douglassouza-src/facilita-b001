@@ -5,6 +5,7 @@ import TaskRepository from './../repositories/TaskRepository';
 
 export const taskRouter = Router();
 
+//getAlltasks
 taskRouter.get('/', async (req: Request, res: Response): Promise<Response> => {
     try {
         const tasks = await TaskRepository.getTasks();
@@ -14,6 +15,25 @@ taskRouter.get('/', async (req: Request, res: Response): Promise<Response> => {
         return res.status(500).json({ error: 'Server Error' });
     }
 });
+
+//getByIdOnly
+taskRouter.get('/:id', async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const taskId: string = req.params.id;
+
+        const task = await TaskRepository.getTaskById(taskId);
+
+        if (!task) {
+            return res.status(404).json({ error: 'Tarefa NÃO localizada' });
+        }
+
+        return res.status(200).json(task);
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Server Error' });
+    }
+});
+
 
 taskRouter.post('/', async (req: Request, res: Response): Promise<Response> => {
     try {
@@ -82,3 +102,5 @@ taskRouter.delete('/:id', async (req: Request, res: Response): Promise<Response>
         return res.status(500).json({ error: 'Server Error' });
     }
 });
+
+
