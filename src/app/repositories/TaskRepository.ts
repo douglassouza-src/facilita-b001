@@ -9,7 +9,6 @@ const getTasks = (): Promise<ITask[]> => {
     const options: FindManyOptions<Task> = {
         order: { created_at: 'ASC' },
     };
-
     return taskRepository.find(options);
 };
 
