@@ -1,6 +1,6 @@
 import "reflect-metadata"
 import express from "express";
-import cors from 'cors';
+import cors from "cors";
 import { AppDataSource } from './database/data-source';
 import routers from "./app/routes/routes";
 

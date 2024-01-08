@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 @Entity('Tasks_Table')
 export class Task {
   @PrimaryGeneratedColumn('uuid')
-  id: string;
+  id!: string;
 
   @Column({
     type: 'varchar',
@@ -12,10 +12,10 @@ export class Task {
     nullable: false,
     unique: true,
   })
-  description: string;
+  description!: string;
 
   @CreateDateColumn({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  created_at: Date;
+  created_at!: Date;
 
   @BeforeInsert()
   generateId() {
